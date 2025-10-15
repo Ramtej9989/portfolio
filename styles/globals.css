@@ -1,0 +1,290 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #000000;
+  --secondary: #8A2BE2;
+  --accent: #9370DB;
+  --dark-gray: #0A0A0A;
+  --text-color: #FFFFFF;
+  --text-secondary: #CCCCCC;
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--primary);
+  color: var(--text-color);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  min-height: 100vh;
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--secondary);
+  color: white;
+}
+
+/* Common Utility Classes */
+@layer components {
+  /* Section Containers */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+  
+  /* Section Titles */
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-white mb-8 relative inline-block;
+  }
+  
+  .section-title::after {
+    content: "";
+    @apply absolute left-0 -bottom-2 h-1 w-full bg-secondary rounded-full;
+  }
+  
+  /* Interactive Elements */
+  .violet-glow {
+    @apply transition-all duration-300 hover:text-secondary hover:shadow-lg hover:shadow-secondary/50;
+  }
+  
+  /* Navigation Links */
+  .nav-link {
+    @apply px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-secondary/20 transition-all duration-300;
+  }
+  
+  .nav-link-active {
+    @apply bg-secondary/30 text-white;
+  }
+  
+  /* Buttons */
+  .btn-primary {
+    @apply bg-secondary hover:bg-secondary/90 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300;
+  }
+  
+  .btn-outline {
+    @apply border border-secondary text-secondary hover:bg-secondary/10 px-6 py-3 rounded-full font-semibold transition-all duration-300;
+  }
+  
+  /* Cards */
+  .card {
+    @apply bg-black/40 p-6 rounded-lg shadow-lg border border-secondary/30 hover:border-secondary/60 transition-all duration-300;
+  }
+  
+  /* Backface visibility for 3D effects */
+  .backface-hidden {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  /* Rotation utilities */
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Animation Keyframes */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px var(--secondary);
+  }
+  100% {
+    box-shadow: 0 0 15px var(--accent), 0 0 20px var(--secondary);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced Skills Orbit Styles */
+.icon {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+
+/* Animated gradient backgrounds */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Custom glowing orbit animations */
+@keyframes pulse-glow {
+  0% { opacity: 0.4; box-shadow: 0 0 5px rgba(138, 43, 226, 0.3); }
+  50% { opacity: 0.8; box-shadow: 0 0 15px rgba(138, 43, 226, 0.5); }
+  100% { opacity: 0.4; box-shadow: 0 0 5px rgba(138, 43, 226, 0.3); }
+}
+
+/* 3D perspective for the skill icons */
+.orbit-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Custom background for skills section */
+.skills-bg {
+  background: radial-gradient(circle at center, rgba(138, 43, 226, 0.1) 0%, rgba(0, 0, 0, 1) 70%);
+}
+
+/* Skills Table Styles - Matching Screenshot */
+.skills-table {
+  background-color: #000000;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 100%;
+}
+
+.skills-table h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.skill-item {
+  margin-bottom: 1.5rem;
+}
+
+.skill-name {
+  font-weight: 500;
+  color: white;
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+
+.skill-percentage {
+  font-weight: 600;
+  color: var(--secondary);
+  text-align: right;
+}
+
+.skill-bar-container {
+  width: 100%;
+  background-color: transparent;
+  border-radius: 9999px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.skill-bar {
+  height: 8px;
+  background: linear-gradient(90deg, var(--secondary), var(--accent));
+  border-radius: 9999px;
+  transition: width 1s ease-in-out;
+}
+
+/* Project Modal Overlay Styles */
+.modal-overlay {
+  backdrop-filter: blur(5px);
+}
+
+/* Certificate Card Flip Effect */
+.flip-card {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-front, .flip-card-back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* AI Chat Window Styling */
+.chat-container {
+  @apply bg-black/80 rounded-lg shadow-lg border border-secondary/30;
+  max-height: 80vh;
+}
+
+.chat-message-user {
+  @apply bg-secondary text-white rounded-lg rounded-tr-none p-3 max-w-[80%];
+}
+
+.chat-message-bot {
+  @apply bg-gray-800 text-white rounded-lg rounded-tl-none p-3 max-w-[80%];
+}
+
+/* Typing Animation */
+.typing {
+  display: inline-flex;
+}
+
+.typing-dot {
+  @apply w-2 h-2 bg-gray-400 rounded-full;
+  animation: pulse 1.5s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
