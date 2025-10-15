@@ -155,6 +155,7 @@ export default function Hero() {
               <motion.a
                 href="https://drive.google.com/file/d/1mhS9ZCAgzCtVLK22vZAd9zCf9u3I0XMz/view?usp=drive_link"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="border border-secondary text-secondary hover:bg-secondary/10 px-6 py-3 rounded-full font-semibold transition-all duration-300 text-center"
                 whileHover={{ 
                   scale: 1.05,
@@ -225,4 +226,5 @@ export default function Hero() {
     </section>
   );
 }
+
 
