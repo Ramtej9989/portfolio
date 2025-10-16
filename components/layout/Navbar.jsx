@@ -12,15 +12,14 @@ import {
   FaCertificate,
   FaProjectDiagram,
   FaEnvelope,
-  FaRoute  // Added for Journey
+  FaRoute 
 } from 'react-icons/fa';
 
-// Added Journey to the navigation links
 const navLinks = [
   { name: 'Home', href: '#home', icon: <FaHome /> },
   { name: 'Education', href: '#education', icon: <FaGraduationCap /> },
   { name: 'Skills', href: '#skills', icon: <FaCode /> },
-  { name: 'Journey', href: '#journey', icon: <FaRoute /> }, // Added Journey
+  { name: 'Journey', href: '#journey', icon: <FaRoute /> },
   { name: 'Certificates', href: '#certificates', icon: <FaCertificate /> },
   { name: 'Projects', href: '#projects', icon: <FaProjectDiagram /> },
   { name: 'Contact', href: '#contact', icon: <FaEnvelope /> },
@@ -54,15 +53,29 @@ export default function Navbar({ toggleChat, isChatOpen }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle smooth scrolling
+  // Handle smooth scrolling with improved mobile support
   const handleNavClick = (href) => {
-    const element = document.querySelector(href);
+    // Prevent default behavior
+    const targetId = href.substring(1);
+    const element = document.getElementById(targetId);
+    
     if (element) {
-      window.scrollTo({
-        top: element.offsetTop,
-        behavior: 'smooth'
-      });
+      // Close mobile menu
       setIsOpen(false);
+      
+      // Small delay to allow mobile menu to close first
+      setTimeout(() => {
+        // Get the target's position
+        const rect = element.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const targetTop = rect.top + scrollTop;
+        
+        // Scroll to the target
+        window.scrollTo({
+          top: targetTop,
+          behavior: 'smooth'
+        });
+      }, 100);
     }
   };
 
@@ -85,7 +98,10 @@ export default function Navbar({ toggleChat, isChatOpen }) {
             <Link href="#home" legacyBehavior>
               <a 
                 className="text-xl font-bold cursor-pointer flex items-center" 
-                onClick={() => handleNavClick('#home')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('#home');
+                }}
               >
                 <span className="text-secondary transition-all duration-300 group-hover:text-white">Ram</span>
                 <span className="text-white transition-all duration-300 group-hover:text-secondary">Tej</span>
@@ -192,7 +208,7 @@ export default function Navbar({ toggleChat, isChatOpen }) {
         </div>
       </div>
       
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation with SOLID BLACK background */}
       <AnimatePresence>
         {isOpen && (
           <motion.div 
@@ -202,14 +218,17 @@ export default function Navbar({ toggleChat, isChatOpen }) {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
+            {/* Overlay for closing when clicking outside */}
             <motion.div 
-              className="fixed inset-0 z-40 bg-black/90 backdrop-blur-md"
+              className="fixed inset-0 z-40 bg-black/90"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={() => setIsOpen(false)}
             />
+            
+            {/* Mobile menu with solid BLACK background */}
             <motion.div
               className="fixed top-16 left-0 right-0 bottom-0 z-50 bg-black flex flex-col p-4"
               initial={{ x: '-100%' }}
@@ -220,22 +239,18 @@ export default function Navbar({ toggleChat, isChatOpen }) {
             >
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
                 {navLinks.map((link) => (
-                  <Link key={link.name} href={link.href} legacyBehavior>
-                    <a
-                      className={`${
-                        activeSection === link.href.substring(1)
-                          ? 'bg-secondary/30 text-white'
-                          : 'text-gray-300 hover:bg-secondary/20 hover:text-white'
-                      } flex items-center gap-3 px-4 py-4 rounded-md text-base font-medium border-b border-secondary/10`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleNavClick(link.href);
-                      }}
-                    >
-                      <span className="text-secondary">{link.icon}</span>
-                      {link.name}
-                    </a>
-                  </Link>
+                  <button
+                    key={link.name}
+                    className={`${
+                      activeSection === link.href.substring(1)
+                        ? 'bg-violet-900/30 text-white'
+                        : 'text-white hover:text-violet-400 hover:bg-violet-900/20'
+                    } flex items-center gap-3 px-4 py-4 rounded-md text-base font-medium border-b border-gray-800 text-left transition-all duration-200`}
+                    onClick={() => handleNavClick(link.href)}
+                  >
+                    <span className={activeSection === link.href.substring(1) ? "text-violet-400" : "text-violet-500"}>{link.icon}</span>
+                    {link.name}
+                  </button>
                 ))}
               </div>
             </motion.div>
