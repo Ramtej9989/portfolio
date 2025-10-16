@@ -1,29 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    domains: ['cdn.jsdelivr.net'], // Add any domains you need to load images from
-    formats: ['image/avif', 'image/webp'],
-  },
-  // Optimization for production
   swcMinify: true,
-  compiler: {
-    // Remove console logs in production
-    removeConsole: process.env.NODE_ENV === 'production',
+  // This is important for Vercel deployment
+  output: 'standalone',
+  // If using basePath (uncomment if needed)
+  // basePath: '',
+  // Images configuration
+  images: {
+    domains: ['example.com'], // Add domains you're loading images from
+    unoptimized: true, // Try this if images are causing issues
   },
-  // Add any environment variables you want to expose to the browser
-  env: {
-    NEXT_PUBLIC_WEBSITE_URL: process.env.NEXT_PUBLIC_WEBSITE_URL || 'https://yourwebsite.com',
-  },
-  // Internationalization (if needed)
-  i18n: {
-    locales: ['en'],
-    defaultLocale: 'en',
-  },
-  // Adjust webpack config if needed
-  webpack(config) {
-    return config;
-  },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
