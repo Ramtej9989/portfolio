@@ -1,7 +1,7 @@
 // components/layout/Navbar.jsx
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   FaBars, 
   FaTimes, 
@@ -93,21 +93,14 @@ export default function Navbar({ toggleChat, isChatOpen }) {
 
   return (
     <>
-      <motion.nav 
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'bg-black shadow-lg shadow-secondary/20' : 'bg-black/50 backdrop-blur-sm'
-        }`}
-      >
+      {/* Regular navbar that's always visible */}
+      <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-black shadow-lg shadow-secondary/20' : 'bg-black/50 backdrop-blur-sm'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo/Name */}
-            <motion.div 
-              className="flex-shrink-0 relative group"
-              whileHover={{ scale: 1.05 }}
-            >
+            <div className="flex-shrink-0 relative group">
               <Link href="#home" legacyBehavior>
                 <a 
                   className="text-xl font-bold cursor-pointer flex items-center" 
@@ -118,16 +111,9 @@ export default function Navbar({ toggleChat, isChatOpen }) {
                 >
                   <span className="text-secondary transition-all duration-300 group-hover:text-white">Ram</span>
                   <span className="text-white transition-all duration-300 group-hover:text-secondary">Tej</span>
-                  
-                  <motion.div 
-                    className="absolute -bottom-1 left-0 h-0.5 bg-secondary"
-                    initial={{ width: 0 }}
-                    whileHover={{ width: '100%' }}
-                    transition={{ duration: 0.3 }}
-                  />
                 </a>
               </Link>
-            </motion.div>
+            </div>
             
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
@@ -145,21 +131,20 @@ export default function Navbar({ toggleChat, isChatOpen }) {
                         handleNavClick(link.href);
                       }}
                     >
+                      {/* Background effect */}
                       <span className={`absolute inset-0 rounded-md transition-all duration-300 ${
                         activeSection === link.href.substring(1)
                           ? 'bg-secondary/30'
                           : 'bg-transparent group-hover:bg-secondary/20'
                       }`} />
                       
+                      {/* Content */}
                       <span className="relative z-10">{link.icon}</span>
                       <span className="relative z-10">{link.name}</span>
                       
                       {activeSection === link.href.substring(1) && (
-                        <motion.span
-                          className="absolute bottom-0 left-0 h-0.5 bg-secondary"
-                          initial={{ width: 0 }}
-                          animate={{ width: '100%' }}
-                          transition={{ duration: 0.3 }}
+                        <span
+                          className="absolute bottom-0 left-0 h-0.5 bg-secondary w-full"
                         />
                       )}
                     </a>
@@ -168,9 +153,7 @@ export default function Navbar({ toggleChat, isChatOpen }) {
               </div>
               
               {/* Chat button in navbar */}
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+              <button
                 onClick={toggleChat}
                 className={`relative p-2 rounded-full focus:outline-none transition-all duration-300 ${
                   isChatOpen ? 'bg-secondary text-white' : 'bg-black/40 text-secondary hover:bg-secondary/20'
@@ -181,15 +164,13 @@ export default function Navbar({ toggleChat, isChatOpen }) {
                 {isChatOpen ? (
                   <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full"></span>
                 ) : null}
-              </motion.button>
+              </button>
             </div>
             
             {/* Mobile menu button */}
             <div className="flex items-center lg:hidden space-x-4">
               {/* Chat button in mobile */}
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+              <button
                 onClick={toggleChat}
                 className={`relative p-2 rounded-full focus:outline-none transition-all duration-300 ${
                   isChatOpen ? 'bg-secondary text-white' : 'bg-black/40 text-secondary hover:bg-secondary/20'
@@ -200,7 +181,7 @@ export default function Navbar({ toggleChat, isChatOpen }) {
                 {isChatOpen ? (
                   <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full"></span>
                 ) : null}
-              </motion.button>
+              </button>
               
               {/* Mobile menu toggle */}
               <button
@@ -214,45 +195,42 @@ export default function Navbar({ toggleChat, isChatOpen }) {
             </div>
           </div>
         </div>
-      </motion.nav>
+      </div>
       
-      {/* Mobile menu - Positioned fixed and completely separated from main nav */}
+      {/* Mobile menu overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-[100] bg-black lg:hidden" style={{ top: '0', left: '0', right: '0', bottom: '0' }}>
-          <div className="flex flex-col h-full">
-            {/* Mobile header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-800">
-              <div className="text-xl font-bold">
-                <span className="text-secondary">Ram</span>
-                <span className="text-white">Tej</span>
-              </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-2 rounded-md text-gray-300 hover:text-white hover:bg-secondary/30"
-              >
-                <FaTimes size={24} />
-              </button>
+        <div className="fixed inset-0 z-[60] lg:hidden bg-black">
+          <div className="p-4 border-b border-gray-800 flex items-center justify-between">
+            <div className="text-xl font-bold flex">
+              <span className="text-secondary">Ram</span>
+              <span className="text-white">Tej</span>
             </div>
-            
-            {/* Mobile nav links */}
-            <div className="flex-1 overflow-y-auto pt-8 px-4">
-              <div className="space-y-4">
-                {navLinks.map((link) => (
+            <button
+              onClick={() => setIsOpen(false)}
+              className="p-2 rounded-md text-gray-400 hover:text-white hover:bg-secondary/20"
+            >
+              <FaTimes size={24} />
+            </button>
+          </div>
+          
+          <div className="p-4 mt-4">
+            <nav className="space-y-6">
+              {navLinks.map((link) => (
+                <div key={link.name} className="overflow-hidden">
                   <button
-                    key={link.name}
-                    className={`w-full py-4 px-6 flex items-center gap-4 rounded-md text-left text-lg transition-colors ${
-                      activeSection === link.href.substring(1)
-                        ? 'bg-secondary/20 text-white'
-                        : 'text-white hover:text-secondary hover:bg-black'
-                    }`}
+                    className="flex items-center w-full p-3 rounded-md hover:bg-secondary/10 text-left"
                     onClick={() => handleNavClick(link.href)}
                   >
-                    <span className="text-secondary text-xl">{link.icon}</span>
-                    <span>{link.name}</span>
+                    <div className="bg-secondary/10 p-3 rounded-md text-secondary mr-4">
+                      {link.icon}
+                    </div>
+                    <span className="text-white text-lg font-medium">
+                      {link.name}
+                    </span>
                   </button>
-                ))}
-              </div>
-            </div>
+                </div>
+              ))}
+            </nav>
           </div>
         </div>
       )}
