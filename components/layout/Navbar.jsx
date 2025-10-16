@@ -12,14 +12,15 @@ import {
   FaCertificate,
   FaProjectDiagram,
   FaEnvelope,
-  FaRoute // Icon for Journey
+  FaRoute  // Added for Journey
 } from 'react-icons/fa';
 
+// Added Journey to the navigation links
 const navLinks = [
   { name: 'Home', href: '#home', icon: <FaHome /> },
   { name: 'Education', href: '#education', icon: <FaGraduationCap /> },
   { name: 'Skills', href: '#skills', icon: <FaCode /> },
-  { name: 'Journey', href: '#journey', icon: <FaRoute /> }, // Added Journey link
+  { name: 'Journey', href: '#journey', icon: <FaRoute /> }, // Added Journey
   { name: 'Certificates', href: '#certificates', icon: <FaCertificate /> },
   { name: 'Projects', href: '#projects', icon: <FaProjectDiagram /> },
   { name: 'Contact', href: '#contact', icon: <FaEnvelope /> },
@@ -210,7 +211,7 @@ export default function Navbar({ toggleChat, isChatOpen }) {
               onClick={() => setIsOpen(false)}
             />
             <motion.div
-              className="fixed top-16 left-0 right-0 bottom-0 z-50 bg-black/80 backdrop-blur-md flex flex-col p-4"
+              className="fixed top-16 left-0 right-0 bottom-0 z-50 bg-black flex flex-col p-4"
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
@@ -244,4 +245,3 @@ export default function Navbar({ toggleChat, isChatOpen }) {
     </motion.nav>
   );
 }
-
