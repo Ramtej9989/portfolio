@@ -153,17 +153,19 @@ export default function Hero() {
               </motion.a>
               
               <motion.a
-                href="/public/Resume.pdf"
-                target="_blank"
-                className="border border-secondary text-secondary hover:bg-secondary/10 px-6 py-3 rounded-full font-semibold transition-all duration-300 text-center"
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: '0 0 15px rgba(138, 43, 226, 0.3)' 
-                }}
-                whileTap={{ scale: 0.95 }}
+                href="https://drive.google.com/file/d/1zuY4ZtLkzboXNmEzpMrxlDrmANEW_MrE/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                    className="border border-secondary text-secondary hover:bg-secondary/10 px-6 py-3 rounded-full font-semibold transition-all duration-300 text-center"
+                        whileHover={{ 
+                          scale: 1.05,
+                              boxShadow: '0 0 15px rgba(138, 43, 226, 0.3)' 
+                                    }}
+                        whileTap={{ scale: 0.95 }}
               >
                 Download Resume
-              </motion.a>
+                    </motion.a>
+
             </motion.div>
           </motion.div>
           
@@ -225,4 +227,5 @@ export default function Hero() {
     </section>
   );
 }
+
 
