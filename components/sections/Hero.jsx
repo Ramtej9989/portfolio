@@ -153,7 +153,7 @@ export default function Hero() {
               </motion.a>
               
               <motion.a
-                href="/resume.pdf"
+                href="/public/Resume.pdf"
                 target="_blank"
                 className="border border-secondary text-secondary hover:bg-secondary/10 px-6 py-3 rounded-full font-semibold transition-all duration-300 text-center"
                 whileHover={{ 
@@ -225,3 +225,4 @@ export default function Hero() {
     </section>
   );
 }
+
