@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Root variables */
 :root {
   --primary: #000000;
   --secondary: #8A2BE2;
@@ -11,17 +12,22 @@
   --text-secondary: #CCCCCC;
 }
 
-/* Base Styles */
+/* Base Styles with viewport fixes */
 html {
   scroll-behavior: smooth;
   background-color: var(--primary);
   color: var(--text-color);
-   font-size: 16px; /* Ensures base font size is large enough */
-  text-size-adjust: 100%; /* Prevents text auto-sizing */
+  font-size: 16px; 
+  text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   width: 100%;
+  max-width: 100vw;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -30,11 +36,41 @@ body {
   min-height: 100vh;
   color: var(--text-color);
   overflow-x: hidden;
-   font-size: 16px; /* Ensures base font size is large enough */
-  text-size-adjust: 100%; /* Prevents text auto-sizing */
-  -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
+  font-size: 16px;
   width: 100%;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/* Hardware acceleration for fixed elements */
+.hardware-accelerated {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Navbar specific fixes */
+header, 
+nav {
+  width: 100% !important;
+  max-width: 100vw !important;
+  left: 0 !important;
+  right: 0 !important;
+  position: fixed;
+  z-index: 1000;
+}
+
+/* Fix for mobile devices to avoid viewport scaling issues */
+@media screen and (max-width: 768px) {
+  html, 
+  body {
+    touch-action: manipulation;
+    -ms-content-zooming: none;
+  }
 }
 
 /* Scrollbar */
@@ -91,15 +127,31 @@ body {
   .nav-link-active {
     @apply bg-secondary/30 text-white;
   }
+  
+  /* Improved navbar styles */
   nav {
-  width: 100%;
-  max-width: 100vw;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-}
+    width: 100%;
+    max-width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+  
+  /* Fix for mobile navigation */
+  .mobile-nav {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    z-index: 50;
+    background-color: #000000;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 
   /* Buttons */
   .btn-primary {
@@ -132,6 +184,19 @@ body {
   /* Rotation utilities */
   .rotate-y-180 {
     transform: rotateY(180deg);
+  }
+  
+  /* Spacer for fixed navbar */
+  .navbar-spacer {
+    height: 64px;
+    width: 100%;
+  }
+  
+  /* Icon containers for mobile navigation */
+  .mobile-icon-container {
+    @apply flex items-center justify-center;
+    width: 48px;
+    height: 48px;
   }
 }
 
