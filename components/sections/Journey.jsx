@@ -1,18 +1,30 @@
-// components/sections/Journey.jsx
+// components/sections/Journey.jsx - With timeline data included
 import { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaLaptopCode, FaBriefcase, FaCertificate, FaChevronLeft, FaChevronRight, FaCode } from 'react-icons/fa';
+import { 
+  FaGraduationCap, 
+  FaLaptopCode, 
+  FaBriefcase, 
+  FaCertificate, 
+  FaChevronLeft, 
+  FaChevronRight, 
+  FaCode,
+  FaChartLine,
+  FaRobot,
+  FaBrain,
+  FaChartBar
+} from 'react-icons/fa';
 
-// Timeline data
+// Timeline data - included from your original code
 const timelineData = [
   {
     id: 1,
     date: 'Nov 2022',
     title: 'First Line of Code',
     category: 'beginning',
-    description: 'Wrote my first “Hello World” program in C language, marking the beginning of my programming journey.',
+    description: 'Wrote my first "Hello World" program in C language, marking the beginning of my programming journey.',
     icon: FaCode,
-    color: '#8A63F6',
+    color: '#38BDF8',
     details: [
       'Explored the basics of C programming',
       'Understood how code runs on a computer',
@@ -26,7 +38,7 @@ const timelineData = [
     category: 'education',
     description: 'Started learning core data structures using the C language, building a stronger foundation in programming and problem-solving.',
     icon: FaGraduationCap,
-    color: '#D86779',
+    color: '#A78BFA',
     details: [
       'Learned arrays, stacks, queues, and linked lists',
       'Practiced implementing data structures from scratch',
@@ -39,8 +51,8 @@ const timelineData = [
     title: 'Algorithm Practice',
     category: 'education',
     description: 'Focused on improving logical thinking by solving algorithmic challenges.',
-    icon: FaLaptopCode,
-    color: '#C13584',
+    icon: FaCode,
+    color: '#FBBF24',
     details: [
       'Studied sorting and searching algorithms',
       'Improved problem-solving through coding contests',
@@ -54,7 +66,7 @@ const timelineData = [
     category: 'skill',
     description: 'Started learning Python to explore modern programming concepts and enhance problem-solving skills.',
     icon: FaLaptopCode,
-    color: '#A27FE6',
+    color: '#60DAFB',
     details: [
       'Learned Python fundamentals like loops, functions, and OOP',
       'Practiced solving problems on online coding platforms',
@@ -67,8 +79,8 @@ const timelineData = [
     title: 'Data Science Journey',
     category: 'skill',
     description: 'Explored the world of data science, working with data collection, analysis, and visualization techniques.',
-    icon: FaBriefcase,
-    color: '#F77FB3',
+    icon: FaChartLine,
+    color: '#34D399',
     details: [
       'Learned data cleaning and preprocessing',
       'Used Python libraries like Pandas and Matplotlib',
@@ -81,8 +93,8 @@ const timelineData = [
     title: 'Machine Learning',
     category: 'skill',
     description: 'Dived into machine learning to understand predictive modeling and intelligent systems.',
-    icon: FaCertificate,
-    color: '#9370DB',
+    icon: FaRobot,
+    color: '#F472B6',
     details: [
       'Explored supervised and unsupervised learning',
       'Worked with algorithms like Linear Regression and KNN',
@@ -95,8 +107,8 @@ const timelineData = [
     title: 'Deep Learning',
     category: 'skill',
     description: 'Expanded my data science skills by learning neural networks and deep learning techniques.',
-    icon: FaLaptopCode,
-    color: '#FF69B4',
+    icon: FaBrain,
+    color: '#F59E0B',
     details: [
       'Learned the fundamentals of neural networks',
       'Explored libraries like TensorFlow and Keras',
@@ -109,8 +121,8 @@ const timelineData = [
     title: 'Power BI & Visualization',
     category: 'skill',
     description: 'Learned to create powerful, interactive dashboards using Power BI for effective data storytelling.',
-    icon: FaLaptopCode,
-    color: '#BA55D3',
+    icon: FaChartBar,
+    color: '#3B82F6',
     details: [
       'Understood data visualization principles',
       'Created interactive Power BI dashboards',
@@ -123,30 +135,15 @@ const timelineData = [
     title: 'Next.js Development',
     category: 'skill',
     description: 'Started learning Next.js to build modern, fast, and scalable web applications.',
-    icon: FaBriefcase,
-    color: '#8B008B',
+    icon: FaLaptopCode,
+    color: '#8B5CF6',
     details: [
       'Explored server-side rendering and static site generation',
       'Built dynamic full-stack projects',
       'Improved performance and SEO with Next.js features'
     ]
-  },
-  {
-    id: 10,
-    date: 'Aug 2025',
-    title: 'ServiceNow',
-    category: 'ongoing',
-    description: 'Started learning ServiceNow to automate workflows and manage IT services efficiently.',
-    icon: FaCode,
-    color: '#DA70D6',
-    details: [
-      'Explored ServiceNow platform modules',
-      'Practiced building workflows and automations',
-      'Gained hands-on experience with IT service management'
-    ]
   }
 ];
-
 
 export default function Journey() {
   const scrollContainerRef = useRef(null);
@@ -188,6 +185,7 @@ export default function Journey() {
     };
   }, [isClient]);
 
+  // These scroll functions need to work correctly
   const scrollLeft = () => {
     if (!scrollContainerRef.current) return;
     scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
@@ -198,10 +196,36 @@ export default function Journey() {
     scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
   };
 
+  // Make timeline draggable
+  const handleMouseDown = (e) => {
+    if (!scrollContainerRef.current) return;
+    
+    e.preventDefault();
+    
+    const startX = e.pageX;
+    const scrollLeft = scrollContainerRef.current.scrollLeft;
+    
+    const handleMouseMove = (e) => {
+      if (!scrollContainerRef.current) return;
+      
+      const x = e.pageX;
+      const distance = startX - x;
+      scrollContainerRef.current.scrollLeft = scrollLeft + distance;
+    };
+    
+    const handleMouseUp = () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = 'default';
+    };
+    
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    document.body.style.cursor = 'grabbing';
+  };
+
   return (
     <section id="journey" className="py-16 md:py-24 relative">
-      {/* No background changes - keep your existing dark purple background */}
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2 
           className="section-title mb-16"
@@ -215,7 +239,7 @@ export default function Journey() {
         
         {isClient && (
           <>
-            {/* Timeline Controls */}
+            {/* Timeline Controls - Fixed version */}
             <div className="flex justify-end mb-6 space-x-2">
               <button 
                 onClick={scrollLeft}
@@ -237,14 +261,15 @@ export default function Journey() {
             
             {/* Timeline */}
             <div className="relative">
-              {/* Timeline line with gradient - ONLY THIS PART IS CHANGED */}
+              {/* Timeline line with gradient */}
               <div className="absolute top-8 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 z-0"></div>
               
-              {/* Timeline scroll container */}
+              {/* Timeline scroll container with mouse events for drag */}
               <div 
                 ref={scrollContainerRef}
-                className="overflow-x-auto hide-scrollbar pb-6 pt-4"
+                className="overflow-x-auto hide-scrollbar pb-6 pt-4 cursor-grab active:cursor-grabbing"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                onMouseDown={handleMouseDown}
               >
                 <div className="flex" style={{ minWidth: 'max-content', paddingLeft: '5%', paddingRight: '5%' }}>
                   {/* Timeline milestones */}
@@ -264,7 +289,10 @@ export default function Journey() {
                           }`}
                           onClick={() => setSelectedMilestone(selectedMilestone?.id === milestone.id ? null : milestone)}
                           aria-label={`Select milestone: ${milestone.title}`}
-                          style={{ borderColor: selectedMilestone?.id === milestone.id ? milestone.color : undefined }}
+                          style={{ 
+                            borderColor: selectedMilestone?.id === milestone.id ? milestone.color : undefined,
+                            boxShadow: selectedMilestone?.id === milestone.id ? `0 0 10px ${milestone.color}80` : 'none'
+                          }}
                         >
                           {/* Icon in node */}
                           <div 
@@ -297,8 +325,15 @@ export default function Journey() {
                 <div 
                   className="h-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300"
                   style={{ width: `${(scrollPosition / Math.max(maxScroll, 1)) * 100}%` }}
-                ></div>
+                />
               </div>
+              
+              {/* Drag to explore message */}
+              {scrollPosition === 0 && (
+                <div className="mt-4 text-center text-gray-400 text-sm">
+                  Drag to explore <FaChevronRight className="inline ml-1" />
+                </div>
+              )}
             </div>
             
             {/* Selected milestone details */}
