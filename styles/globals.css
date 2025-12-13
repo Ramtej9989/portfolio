@@ -16,6 +16,12 @@ html {
   scroll-behavior: smooth;
   background-color: var(--primary);
   color: var(--text-color);
+   font-size: 16px; /* Ensures base font size is large enough */
+  text-size-adjust: 100%; /* Prevents text auto-sizing */
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -24,6 +30,11 @@ body {
   min-height: 100vh;
   color: var(--text-color);
   overflow-x: hidden;
+   font-size: 16px; /* Ensures base font size is large enough */
+  text-size-adjust: 100%; /* Prevents text auto-sizing */
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  width: 100%;
 }
 
 /* Scrollbar */
@@ -80,7 +91,16 @@ body {
   .nav-link-active {
     @apply bg-secondary/30 text-white;
   }
-  
+  nav {
+  width: 100%;
+  max-width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
   /* Buttons */
   .btn-primary {
     @apply bg-secondary hover:bg-secondary/90 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300;
