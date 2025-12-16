@@ -29,7 +29,7 @@ export default function Contact() {
     
     try {
       await emailjs.sendForm(
-        'service_ms5k3ei',
+        'service_3zv764j',
         'template_u9qc8c6',
         form.current,
         '4Ao4839wgAlhH9coH'
@@ -333,3 +333,4 @@ export default function Contact() {
     </section>
   );
 }
+
