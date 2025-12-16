@@ -7,143 +7,150 @@ import { FaTimes, FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight, Fa
 const projectsData = [
   {
     id: 1,
-    title: "Advanced React and Redux",
-    image: "/images/projects/project1.jpg",
-    description: "Comprehensive project using React and Redux for state management with modern application architecture.",
-    technologies: ["React", "Redux", "JavaScript", "Tailwind CSS"],
-    github: "https://github.com/yourusername/project1",
-    demo: "https://project1-demo.com",
-    details: "This project demonstrates advanced React patterns including custom hooks, context API, and Redux for global state management. It includes features like user authentication, form validation, and data persistence.",
+    title: "Power BI Coffee Shop Performance Dashboard",
+    image: "/images/projects/Coffee.png",
+    description:
+      "Interactive Power BI dashboard analyzing sales, customer behavior, and operational performance for a coffee shop business.",
+    technologies: ["Power BI", "DAX", "SQL", "Excel"],
+    github: "https://github.com/Ramtej9989/Coffee-Shop-Performance-Dashboard",
+    demo: "https://drive.google.com/file/d/1DD8KJ0u98ZWg_WQQmjLpngfmC6z2DkoM/view?usp=sharing",
+    details:
+      "Designed a comprehensive Power BI dashboard to track revenue trends, top-selling products, peak hours, and customer purchasing behavior. Implemented advanced DAX calculations for KPIs such as average order value, profit margins, and daily sales growth, enabling data-driven decision-making for business optimization.",
     performance: {
       lighthouse: {
-        performance: 96,
-        accessibility: 98,
-        bestPractices: 92,
-        seo: 100
+        performance: 95,
+        accessibility: 96,
+        bestPractices: 94,
+        seo: 98
       },
       webVitals: {
-        lcp: 1.8,
-        fid: 42,
-        cls: 0.05
+        lcp: 1.6,
+        fid: 40,
+        cls: 0.04
       },
       optimizations: [
         {
-          metric: "Page Load Time",
-          before: 3.7,
+          metric: "Dashboard Load Time",
+          before: 4.2,
           after: 1.9,
           unit: "s",
           icon: FaClock
         },
         {
-          metric: "Bundle Size",
-          before: 1.2,
-          after: 0.4,
-          unit: "MB",
-          icon: FaFileDownload
+          metric: "Query Execution Time",
+          before: 3.1,
+          after: 1.2,
+          unit: "s",
+          icon: FaServer
         },
         {
-          metric: "HTTP Requests",
-          before: 24,
-          after: 9,
-          unit: "",
-          icon: FaServer
+          metric: "Data Model Size",
+          before: 1.4,
+          after: 0.5,
+          unit: "GB",
+          icon: FaFileDownload
         }
       ]
     }
   },
   {
     id: 2,
-    title: "AI-Enhanced Data Analysis Dashboard",
-    image: "/images/projects/project2.jpg",
-    description: "Interactive dashboard with AI-powered data visualization and insights generation.",
-    technologies: ["Python", "TensorFlow", "React", "D3.js"],
-    github: "https://github.com/yourusername/project2",
-    demo: "https://project2-demo.com",
-    details: "An AI-powered dashboard that provides automated insights from complex datasets. The backend uses Python with TensorFlow for predictive analytics, while the frontend is built with React and D3.js for responsive visualizations.",
-    performance: {
+  title: "Cyber Threat Intelligence & SOC Analytics Platform",
+  image: "/images/projects/cyber.png",
+  description:
+    "A full-stack SOC analytics platform for monitoring cyber threats, analyzing incidents, and visualizing security intelligence.",
+  technologies: ["Next.js", "MongoDB", "Python", "Data Analysis"],
+  github: "https://github.com/Ramtej9989/Cyber-Threat-Intel-Frontend",
+  demo: "https://cyber-threat-intel-frontend.vercel.app/",
+  details:
+    "Developed a cyber threat intelligence and SOC analytics platform using Next.js for the frontend, MongoDB for scalable data storage, and Python for data processing and analysis. The system aggregates security logs and threat data, performs analytical processing to identify attack patterns, and presents actionable insights through interactive dashboards to support faster incident response.",
+  performance: {
       lighthouse: {
-        performance: 88,
+        performance: 90,
         accessibility: 94,
-        bestPractices: 95,
-        seo: 97
+        bestPractices: 96,
+        seo: 95
       },
       webVitals: {
-        lcp: 2.3,
-        fid: 58,
-        cls: 0.08
+        lcp: 2.1,
+        fid: 55,
+        cls: 0.06
       },
       optimizations: [
         {
-          metric: "Data Load Time",
-          before: 5.2,
-          after: 1.8,
+          metric: "Threat Data Processing Time",
+          before: 6.4,
+          after: 2.2,
           unit: "s",
           icon: FaClock
         },
         {
-          metric: "Rendering Time",
-          before: 3.6,
-          after: 1.2,
-          unit: "s",
-          icon: FaClock
-        },
-        {
-          metric: "API Requests",
-          before: 18,
-          after: 5,
-          unit: "",
+          metric: "Alert Correlation Rate",
+          before: 62,
+          after: 89,
+          unit: "%",
           icon: FaServer
+        },
+        {
+          metric: "False Positive Reduction",
+          before: 38,
+          after: 14,
+          unit: "%",
+          icon: FaFileDownload
         }
       ]
     }
   },
   {
     id: 3,
-    title: "Full-Stack E-commerce Solution",
-    image: "/images/projects/project3.jpg",
-    description: "Complete e-commerce platform with product management, cart functionality, and payment processing.",
-    technologies: ["Next.js", "MongoDB", "Stripe API", "Node.js"],
-    github: "https://github.com/yourusername/project3",
-    demo: "https://project3-demo.com",
-    details: "A fully-featured e-commerce platform built with Next.js and MongoDB. Features include product catalog management, user authentication, shopping cart functionality, and secure payment processing using Stripe API.",
+    title: "Employee Growth & Engagement Dashboard",
+    image: "/images/projects/Employee.png",
+    description:
+      "Data-driven HR analytics dashboard tracking employee performance, growth, and engagement metrics.",
+    technologies: ["Power BI", "SQL", "Excel", "HR Analytics"],
+    github: "https://github.com/Ramtej9989/employee-growth-engagement-dashboard",
+    demo: "https://drive.google.com/file/d/1na3rbSp-kakIvd8AFJfuMq37Z6S0N0jN/view?usp=sharing",
+    details:
+      "Developed an HR analytics dashboard to monitor employee growth, engagement, attrition, and performance trends. Leveraged SQL for data transformation and Power BI for interactive visualizations, enabling HR teams to identify skill gaps, predict attrition risks, and improve workforce planning.",
     performance: {
       lighthouse: {
-        performance: 92,
+        performance: 94,
         accessibility: 97,
-        bestPractices: 93,
-        seo: 100
+        bestPractices: 95,
+        seo: 99
       },
       webVitals: {
-        lcp: 1.4,
-        fid: 38,
+        lcp: 1.5,
+        fid: 36,
         cls: 0.03
       },
       optimizations: [
         {
-          metric: "Time to Interactive",
-          before: 4.5,
-          after: 1.7,
+          metric: "Report Refresh Time",
+          before: 4.8,
+          after: 1.6,
           unit: "s",
           icon: FaClock
         },
         {
-          metric: "First Contentful Paint",
-          before: 2.8,
-          after: 0.9,
+          metric: "Query Optimization",
+          before: 3.9,
+          after: 1.3,
           unit: "s",
-          icon: FaClock
+          icon: FaServer
         },
         {
-          metric: "Page Weight",
-          before: 2.6,
-          after: 0.8,
-          unit: "MB",
+          metric: "Dataset Size",
+          before: 1.9,
+          after: 0.7,
+          unit: "GB",
           icon: FaFileDownload
         }
       ]
     }
   }
 ];
+
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -526,13 +533,14 @@ function ProjectCard({ project, index, onViewDetails }) {
       className="flex flex-col bg-black/20 backdrop-blur-sm rounded-lg overflow-hidden h-full"
     >
       {/* Project Image */}
-      <div className="h-48 overflow-hidden">
-        <img 
-          src={project.image} 
-          alt={project.title} 
-          className="w-full h-full object-cover"
-        />
-      </div>
+      <div className="aspect-[16/9] overflow-hidden bg-black">
+  <img 
+    src={project.image} 
+    alt={project.title} 
+    className="w-full h-auto object-contain"
+  />
+</div>
+
       
       {/* Project Details */}
       <div className="p-6 flex-grow flex flex-col">
