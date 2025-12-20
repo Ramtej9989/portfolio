@@ -148,7 +148,63 @@ const projectsData = [
         }
       ]
     }
+  },
+  {
+  id: 4,
+  title: "Loan Default Risk Analysis (Finance / Banking EDA)",
+  image: "/images/projects/finance-loan-eda.png",
+  description:
+    "Exploratory Data Analysis project analyzing loan default risk using multi-source banking data including customer demographics, credit history, and transaction behavior.",
+  technologies: [
+    "Python",
+    "Pandas",
+    "NumPy",
+    "Matplotlib",
+    "Seaborn",
+    "Scikit-learn",
+    "EDA"
+  ],
+  github: "https://github.com/Ramtej9989/finance-loan-default-risk-eda",
+  demo: "https://drive.google.com/file/d/1TIqynX-SvYTAkyt_ctz6ztkCwe4pTNPj/view?usp=sharing",
+  details:
+    "Conducted an end-to-end exploratory data analysis on multi-source banking datasets to identify key drivers of loan default risk. Integrated customer demographics, loan details, credit history, and transaction data using relational joins. Performed data cleaning, missing value analysis, univariate, bivariate, and multivariate analysis, and engineered financial features such as loan-to-income ratio. Validated EDA insights using a baseline machine learning model to support data-driven risk assessment.",
+  performance: {
+    lighthouse: {
+      performance: 93,
+      accessibility: 96,
+      bestPractices: 95,
+      seo: 97
+    },
+    webVitals: {
+      lcp: 1.7,
+      fid: 42,
+      cls: 0.04
+    },
+    optimizations: [
+      {
+        metric: "Data Integration Efficiency",
+        before: 5.6,
+        after: 2.1,
+        unit: "s",
+        icon: FaClock
+      },
+      {
+        metric: "EDA Processing Time",
+        before: 4.3,
+        after: 1.8,
+        unit: "s",
+        icon: FaServer
+      },
+      {
+        metric: "Feature Engineering Impact",
+        before: 0.61,
+        after: 0.78,
+        unit: "Score",
+        icon: FaFileDownload
+      }
+    ]
   }
+}
 ];
 
 
@@ -778,3 +834,4 @@ function OptimizationResult({ metric, before, after, unit, icon: Icon }) {
     </div>
   );
 }
+
